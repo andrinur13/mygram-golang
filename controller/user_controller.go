@@ -3,6 +3,7 @@ package controller
 import (
 	"mygram-golang/helper"
 	"mygram-golang/model/input"
+	"mygram-golang/model/response"
 	"mygram-golang/service"
 	"net/http"
 
@@ -41,7 +42,16 @@ func (h *userController) RegisterUser(c *gin.Context) {
 		return
 	}
 
-	response := helper.APIResponse("created", newUser)
+	newUserResponse := response.UserRegisterResponse{
+		ID:        newUser.ID,
+		Age:       newUser.Age,
+		Email:     newUser.Email,
+		Password:  newUser.Password,
+		Username:  newUser.Username,
+		CreatedAt: newUser.CreatedAt,
+	}
+
+	response := helper.APIResponse("created", newUserResponse)
 	c.JSON(http.StatusOK, response)
 	return
 }

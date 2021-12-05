@@ -2,20 +2,24 @@ package main
 
 import (
 	"mygram-golang/conf"
-	"mygram-golang/model/entity"
+	"mygram-golang/controller"
 	"mygram-golang/repository"
+	"mygram-golang/service"
+
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	db := conf.InitDB()
 
-	userAndri := entity.User{
-		Username: "andrinur13",
-		Email:    "andribis13@gmaill.com",
-		Password: "Bismillah",
-		Age:      21,
-	}
-
 	userRepository := repository.NewRepository(db)
-	userRepository.Save(userAndri)
+	userService := service.NewService(userRepository)
+	userController := controller.NewUserController(userService)
+
+	router := gin.Default()
+
+	// route
+	router.POST("/users/register", userController.RegisterUser)
+
+	router.Run()
 }

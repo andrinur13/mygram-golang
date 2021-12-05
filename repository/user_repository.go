@@ -8,10 +8,10 @@ import (
 
 type UserRepository interface {
 	Save(user entity.User) (entity.User, error)
-	Update(user entity.User) (entity.User, error)
-	Delete(ID int) (entity.User, error)
-	Get(ID int) (entity.User, error)
-	GetAll() ([]entity.User, error)
+	// Update(user entity.User) (entity.User, error)
+	// Delete(ID int) (entity.User, error)
+	// Get(ID int) (entity.User, error)
+	// GetAll() ([]entity.User, error)
 }
 
 type userRepository struct {
