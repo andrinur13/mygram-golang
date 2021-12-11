@@ -13,7 +13,7 @@ import (
 func main() {
 	db := conf.InitDB()
 
-	userRepository := repository.NewRepository(db)
+	userRepository := repository.NewUserRepository(db)
 	userService := service.NewService(userRepository)
 	userController := controller.NewUserController(userService)
 
