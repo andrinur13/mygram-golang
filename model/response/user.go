@@ -10,3 +10,14 @@ type UserRegisterResponse struct {
 	Username  string    `json:"username"`
 	CreatedAt time.Time `json:"date"`
 }
+
+type UserLoginResponse struct {
+	Token string `json:"token"`
+}
+
+type UserUpdateResponse struct {
+	ID       int    `json:"id"`
+	Age      int    `json:"age"`
+	Email    string `json:"email"`
+	Username string `json:"username"`
+}
