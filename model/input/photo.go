@@ -5,3 +5,7 @@ type InputPhotos struct {
 	Caption  string `json:"caption"`
 	PhotoURL string `json:"photo_url" binding:"required"`
 }
+
+type DeletePhoto struct {
+	ID int `uri:"id" binding:"required"`
+}
