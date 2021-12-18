@@ -11,6 +11,7 @@ type PhotoService interface {
 	DeletePhoto(ID int) (entity.Photo, error)
 	GetPhotosUser(idUser int) ([]entity.Photo, error)
 	GetPhotoByID(idPhoto int) (entity.Photo, error)
+	UpdatePhoto(ID int, input input.UpdatePhoto) (entity.Photo, error)
 }
 
 type photoService struct {
@@ -81,4 +82,32 @@ func (s *photoService) GetPhotoByID(idPhoto int) (entity.Photo, error) {
 	}
 
 	return photoQuery, nil
+}
+
+func (s *photoService) UpdatePhoto(ID int, input input.UpdatePhoto) (entity.Photo, error) {
+
+	photoResult, err := s.photoRepository.FindByID(ID)
+
+	if err != nil {
+		return entity.Photo{}, err
+	}
+
+	if photoResult.ID == 0 {
+		return entity.Photo{}, nil
+	}
+
+	updatedPhoto := entity.Photo{
+		Title:    input.Title,
+		Caption:  input.Caption,
+		PhotoURL: input.PhotoURL,
+		UserID:   photoResult.UserID,
+	}
+
+	photoUpdate, err := s.photoRepository.Update(updatedPhoto, ID)
+
+	if err != nil {
+		return entity.Photo{}, err
+	}
+
+	return photoUpdate, nil
 }

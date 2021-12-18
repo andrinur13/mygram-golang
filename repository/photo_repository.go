@@ -11,6 +11,7 @@ type PhotoRepository interface {
 	Delete(ID int) (entity.Photo, error)
 	FindByID(ID int) (entity.Photo, error)
 	FindByUserID(ID int) ([]entity.Photo, error)
+	Update(photo entity.Photo, ID int) (entity.Photo, error)
 }
 
 type photoRepository struct {
@@ -67,4 +68,14 @@ func (r *photoRepository) Delete(ID int) (entity.Photo, error) {
 	}
 
 	return photoDeleted, err
+}
+
+func (r *photoRepository) Update(photo entity.Photo, ID int) (entity.Photo, error) {
+	err := r.db.Where("id = ?", ID).Updates(&photo).Error
+
+	if err != nil {
+		return entity.Photo{}, err
+	}
+
+	return photo, nil
 }

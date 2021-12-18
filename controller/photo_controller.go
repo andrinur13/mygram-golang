@@ -180,3 +180,63 @@ func (h *photoController) GetPhoto(c *gin.Context) {
 	c.JSON(http.StatusOK, response)
 	return
 }
+
+func (h *photoController) UpdatePhoto(c *gin.Context) {
+	currentUser := c.MustGet("currentUser").(int)
+
+	if currentUser == 0 {
+		response := helper.APIResponse("failed", "id must be exist!")
+		c.AbortWithStatusJSON(http.StatusUnauthorized, response)
+		return
+	}
+
+	updatePhoto := input.UpdatePhoto{}
+
+	err := c.ShouldBindJSON(&updatePhoto)
+
+	if err != nil {
+		errorMessages := helper.FormatValidationError(err)
+		response := helper.APIResponse("failed", gin.H{
+			"errors": errorMessages,
+		})
+		c.AbortWithStatusJSON(http.StatusUnauthorized, response)
+		return
+	}
+
+	var idPhotoUri input.UpdatePhotoIDUser
+
+	err = c.ShouldBindUri(&idPhotoUri)
+
+	if err != nil {
+		errorMessages := helper.FormatValidationError(err)
+		response := helper.APIResponse("failed", gin.H{
+			"errors": errorMessages,
+		})
+		c.AbortWithStatusJSON(http.StatusUnauthorized, response)
+		return
+	}
+
+	id_photo := idPhotoUri.ID
+
+	queryResult, err := h.photoService.UpdatePhoto(id_photo, updatePhoto)
+
+	if queryResult.ID == 0 {
+		response := helper.APIResponse("failed", "photo not found!")
+		c.JSON(http.StatusUnprocessableEntity, response)
+		return
+	}
+
+	if err != nil {
+		errorMessages := helper.FormatValidationError(err)
+		response := helper.APIResponse("failed", gin.H{
+			"errors": errorMessages,
+		})
+		c.JSON(http.StatusUnprocessableEntity, response)
+	}
+
+	photoUpdated, err := h.photoService.GetPhotoByID(id_photo)
+
+	response := helper.APIResponse("ok", photoUpdated)
+	c.JSON(http.StatusOK, response)
+	return
+}

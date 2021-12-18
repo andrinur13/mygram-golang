@@ -33,8 +33,17 @@ func main() {
 	router.DELETE("/photos/:id", middleware.AuthMiddleware(), photoController.DeletePhoto)
 	router.GET("/photos", middleware.AuthMiddleware(), photoController.GetPhotos)
 	router.GET("/photos/:id", photoController.GetPhoto)
+	router.PUT("/photos/:id", middleware.AuthMiddleware(), photoController.UpdatePhoto)
 
 	router.POST("/user/test", middleware.AuthMiddleware(), userController.TestUser)
+
+	// data := input.UpdatePhoto{
+	// 	Title:    "title 1",
+	// 	Caption:  "Title 1 adalah",
+	// 	PhotoURL: "https;//facebook.com",
+	// }
+
+	// photoService.UpdatePhoto(8, data)
 
 	router.Run()
 }
