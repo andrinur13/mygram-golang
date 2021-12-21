@@ -2,7 +2,7 @@ package input
 
 type CommentInput struct {
 	Message string `json:"message" binding:"required"`
-	PhotoID int    `json:"photo_id"`
+	PhotoID int    `json:"photo_id" binding:"required"`
 }
 
 type DeleteComment struct {

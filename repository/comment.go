@@ -18,8 +18,8 @@ type CommentRepository interface {
 	FindByID(ID int) (entity.Comment, error)
 }
 
-func NewCommentRepository(db *gorm.DB) *photoRepository {
-	return &photoRepository{db}
+func NewCommentRepository(db *gorm.DB) *commentRepository {
+	return &commentRepository{db}
 }
 
 func (r *commentRepository) Save(comment entity.Comment) (entity.Comment, error) {
@@ -49,7 +49,7 @@ func (r *commentRepository) Delete(ID int) (entity.Comment, error) {
 func (r *commentRepository) FindByUserID(ID int) ([]entity.Comment, error) {
 	var comment []entity.Comment
 
-	err := r.db.Where("id = ?", ID).Find(&comment).Error
+	err := r.db.Where("user_id = ?", ID).Find(&comment).Error
 
 	if err != nil {
 		return []entity.Comment{}, err
