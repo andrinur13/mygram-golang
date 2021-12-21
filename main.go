@@ -21,6 +21,10 @@ func main() {
 	photoService := service.NewPhotoService(photoRepository)
 	photoController := controller.NewPhotoController(photoService, userService)
 
+	socialmediaRepository := repository.NewSocialMediaRepository(db)
+	socialmediaService := service.NewSocialMediaService(socialmediaRepository)
+	socialmediaController := controller.NewSocialMediaController(socialmediaService, userService)
+
 	router := gin.Default()
 
 	// route
@@ -34,6 +38,8 @@ func main() {
 	router.GET("/photos", middleware.AuthMiddleware(), photoController.GetPhotos)
 	router.GET("/photos/:id", photoController.GetPhoto)
 	router.PUT("/photos/:id", middleware.AuthMiddleware(), photoController.UpdatePhoto)
+
+	router.POST("/socialmedias", middleware.AuthMiddleware(), socialmediaController.AddNewSocialMedia)
 
 	router.POST("/user/test", middleware.AuthMiddleware(), userController.TestUser)
 
