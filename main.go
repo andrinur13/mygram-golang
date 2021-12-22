@@ -7,7 +7,6 @@ import (
 	"mygram-golang/middleware"
 	"mygram-golang/repository"
 	"mygram-golang/service"
-	"os"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
@@ -64,5 +63,6 @@ func main() {
 	router.PUT("/socialmedias/:id", middleware.AuthMiddleware(), socialmediaController.UpdateSocialMedia)
 	router.DELETE("/socialmedias/:id", middleware.AuthMiddleware(), socialmediaController.DeleteSocialmedia)
 
-	router.Run(":" + os.Getenv("PORT"))
+	// router.Run(":" + os.Getenv("PORT"))
+	router.Run()
 }
