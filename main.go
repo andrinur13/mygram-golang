@@ -52,6 +52,9 @@ func main() {
 
 	// social media
 	router.POST("/socialmedias", middleware.AuthMiddleware(), socialmediaController.AddNewSocialMedia)
+	router.GET("/socialmedias", middleware.AuthMiddleware(), socialmediaController.GetSocialMedia)
+	router.PUT("/socialmedias/:id", middleware.AuthMiddleware(), socialmediaController.UpdateSocialMedia)
+	router.DELETE("/socialmedias/:id", middleware.AuthMiddleware(), socialmediaController.DeleteSocialmedia)
 
 	router.POST("/user/test", middleware.AuthMiddleware(), userController.TestUser)
 

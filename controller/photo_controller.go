@@ -234,9 +234,8 @@ func (h *photoController) UpdatePhoto(c *gin.Context) {
 		c.JSON(http.StatusUnprocessableEntity, response)
 	}
 
-	photoUpdated, err := h.photoService.GetPhotoByID(id_photo)
+	photoUpdated, _ := h.photoService.GetPhotoByID(id_photo)
 
 	response := helper.APIResponse("ok", photoUpdated)
 	c.JSON(http.StatusOK, response)
-	return
 }
