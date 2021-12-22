@@ -14,7 +14,8 @@ type CommentService interface {
 	CreateComment(input input.CommentInput, idUser int) (entity.Comment, error)
 	GetComment(UserID int) ([]entity.Comment, error)
 	DeleteComment(ID int) (entity.Comment, error)
-	UpdateComment(ID int, input input.CommentInput) (entity.Comment, error)
+	UpdateComment(ID int, input input.CommentUpdateInput) (entity.Comment, error)
+	GetCommentByID(commentID int) (entity.Comment, error)
 }
 
 func NewCommentService(commentRepository repository.CommentRepository) *commentService {
@@ -66,7 +67,7 @@ func (s *commentService) DeleteComment(ID int) (entity.Comment, error) {
 	return Deleted, nil
 }
 
-func (s *commentService) UpdateComment(ID int, input input.CommentInput) (entity.Comment, error) {
+func (s *commentService) UpdateComment(ID int, input input.CommentUpdateInput) (entity.Comment, error) {
 
 	Result, err := s.commentRepository.FindByID(ID)
 
@@ -80,7 +81,6 @@ func (s *commentService) UpdateComment(ID int, input input.CommentInput) (entity
 
 	updated := entity.Comment{
 		Message: input.Message,
-		PhotoID: input.PhotoID,
 	}
 
 	commentUpdate, err := s.commentRepository.Update(updated, ID)
@@ -90,4 +90,13 @@ func (s *commentService) UpdateComment(ID int, input input.CommentInput) (entity
 	}
 
 	return commentUpdate, nil
+}
+
+func (s *commentService) GetCommentByID(commentID int) (entity.Comment, error) {
+	comment, err := s.commentRepository.FindByID(commentID)
+	if err != nil {
+		return entity.Comment{}, err
+	}
+
+	return comment, nil
 }

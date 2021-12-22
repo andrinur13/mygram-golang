@@ -159,7 +159,7 @@ func (h *commentController) UpdateComment(c *gin.Context) {
 		return
 	}
 
-	UpdateComment := input.CommentInput{}
+	UpdateComment := input.CommentUpdateInput{}
 
 	err := c.ShouldBindJSON(&UpdateComment)
 
@@ -187,13 +187,7 @@ func (h *commentController) UpdateComment(c *gin.Context) {
 
 	id_comment := idCommentUri.ID
 
-	queryResult, err := h.commentService.UpdateComment(id_comment, UpdateComment)
-
-	if queryResult.ID == 0 {
-		response := helper.APIResponse("failed", "comment not found!")
-		c.JSON(http.StatusUnprocessableEntity, response)
-		return
-	}
+	_, err = h.commentService.UpdateComment(id_comment, UpdateComment)
 
 	if err != nil {
 		errorMessages := helper.FormatValidationError(err)
@@ -203,9 +197,13 @@ func (h *commentController) UpdateComment(c *gin.Context) {
 		c.JSON(http.StatusUnprocessableEntity, response)
 	}
 
-	Updated, err := h.photoService.GetPhotoByID(id_comment)
+	Updated, _ := h.commentService.GetCommentByID(id_comment)
+
+	if Updated.ID == 0 {
+		c.JSON(http.StatusUnprocessableEntity, "comment not found")
+		return
+	}
 
 	response := helper.APIResponse("ok", Updated)
 	c.JSON(http.StatusOK, response)
-	return
 }
