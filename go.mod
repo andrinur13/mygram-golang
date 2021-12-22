@@ -1,5 +1,7 @@
 module mygram-golang
 
+// +heroku goVersion go1.17
+
 go 1.17
 
 require gorm.io/gorm v1.22.4
