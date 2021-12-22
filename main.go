@@ -65,5 +65,6 @@ func main() {
 	router.DELETE("/socialmedias/:id", middleware.AuthMiddleware(), socialmediaController.DeleteSocialmedia)
 
 	router.Run(":" + os.Getenv("PORT"))
+
 	// router.Run()
 }
