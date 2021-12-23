@@ -8,6 +8,7 @@ Kelompok :
 
 ### List library : 
 - [Gin Gionic](https://github.com/gin-gonic/gin) - Web Framework
+- [Gorm](htts://gorm.io) - GORM
 
 
 ### Cara Penggunaan : 
