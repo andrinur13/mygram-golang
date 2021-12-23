@@ -116,7 +116,7 @@ Kelompok :
             
             headers :
 
-            ```json
+            ```
             {
                 Authorization: "Bearer {{token}}"
             }
@@ -125,7 +125,7 @@ Kelompok :
             token pada header dapat didapatkan ketika melalui proses login
 
             contoh :
-            ```json
+            ```
             {
                 Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VyIjoyNH0.XpOW4v9hpneBw9gnsVAGli_zDqj7VmMLW6ZHL80MauQ"
             }
