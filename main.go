@@ -1,7 +1,6 @@
 package main
 
 import (
-	"log"
 	"mygram-golang/conf"
 	"mygram-golang/controller"
 	"mygram-golang/middleware"
@@ -9,14 +8,13 @@ import (
 	"mygram-golang/service"
 
 	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
 )
 
 func main() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
+	// err := godotenv.Load()
+	// if err != nil {
+	// 	log.Fatal("Error loading .env file")
+	// }
 
 	db := conf.InitDB()
 
