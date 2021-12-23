@@ -84,7 +84,7 @@ Kelompok :
             token pada header dapat didapatkan ketika melalui proses login
 
             contoh :
-            ```json
+            ```
             {
                 Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VyIjoyNH0.XpOW4v9hpneBw9gnsVAGli_zDqj7VmMLW6ZHL80MauQ"
             }
@@ -144,6 +144,23 @@ Kelompok :
         * #### Add Photo
             
             [POST]```https://murmuring-savannah-72759.herokuapp.com/photos```
+
+            headers :
+
+            ```
+            {
+                Authorization: "Bearer {{token}}"
+            }
+            ```
+
+            token pada header dapat didapatkan ketika melalui proses login
+
+            contoh :
+            ```
+            {
+                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VyIjoyNH0.XpOW4v9hpneBw9gnsVAGli_zDqj7VmMLW6ZHL80MauQ"
+            }
+            ```            
             
             body :
 
@@ -350,3 +367,307 @@ Kelompok :
             }
             ```
           
+    * #### Comments :
+        * #### Add Comments
+            
+            [POST]```https://murmuring-savannah-72759.herokuapp.com/comments```
+
+            
+            headers :
+
+            ```
+            {
+                Authorization: "Bearer {{token}}"
+            }
+            ```
+
+            token pada header dapat didapatkan ketika melalui proses login
+
+            contoh :
+            ```
+            {
+                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VyIjoyNH0.XpOW4v9hpneBw9gnsVAGli_zDqj7VmMLW6ZHL80MauQ"
+            }
+            ```            
+
+            body :
+
+            ```json
+            {
+                "message": "menurut kalian gimana ?",
+                "photo_id": 8
+            }
+            ```
+
+            response
+            ```json
+            {
+                "status": "created",
+                "data": {
+                    "id": 4,
+                    "message": "menurut kalian gimana ?",
+                    "photo_id": 8,
+                    "user_id": 25
+                }
+            }
+            ```
+
+        * #### Delete Comments
+            [DELETE]```https://murmuring-savannah-72759.herokuapp.com/comments/:id```
+
+            ```
+            https://murmuring-savannah-72759.herokuapp.com/comments/5
+            ```
+            
+            headers :
+
+            ```
+            {
+                Authorization: "Bearer {{token}}"
+            }
+            ```
+
+            token pada header dapat didapatkan ketika melalui proses login
+
+            contoh :
+            ```
+            {
+                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VyIjoyNH0.XpOW4v9hpneBw9gnsVAGli_zDqj7VmMLW6ZHL80MauQ"
+            }
+            ```           
+
+            response
+            ```json
+            {
+                "status": "ok",
+                "data": "success deleted comment!"
+            }
+            ```
+
+        * #### Get Comments
+            [GET]```https://murmuring-savannah-72759.herokuapp.com/comments```
+            
+            headers :
+
+            ```
+            {
+                Authorization: "Bearer {{token}}"
+            }
+            ```
+
+            token pada header dapat didapatkan ketika melalui proses login
+
+            contoh :
+            ```
+            {
+                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VyIjoyNH0.XpOW4v9hpneBw9gnsVAGli_zDqj7VmMLW6ZHL80MauQ"
+            }
+            ```            
+
+            response
+            ```json
+            {
+                "status": "ok",
+                "data": [
+                    {
+                        "id": 2,
+                        "message": "Update comments update",
+                        "photo_id": 9,
+                        "Photo": {
+                            "id": 9,
+                            "title": "caption update",
+                            "caption": "caption update",
+                            "photo_url": "https://images.google.com",
+                            "user_id": 25
+                        }
+                    },
+                    {
+                        "id": 3,
+                        "message": "kira2 bagus gaa yaa ?",
+                        "photo_id": 9,
+                        "Photo": {
+                            "id": 9,
+                            "title": "caption update",
+                            "caption": "caption update",
+                            "photo_url": "https://images.google.com",
+                            "user_id": 25
+                        }
+                    },
+                ]
+            }
+            ```
+
+        * #### PUT Comments
+            [PUT]```https://murmuring-savannah-72759.herokuapp.com/comments/:id```
+            
+            ```
+            https://murmuring-savannah-72759.herokuapp.com/comments/2
+            ```
+
+            headers :
+
+            ```
+            {
+                Authorization: "Bearer {{token}}"
+            }
+            ```
+
+            token pada header dapat didapatkan ketika melalui proses login
+
+            contoh :
+            ```
+            {
+                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VyIjoyNH0.XpOW4v9hpneBw9gnsVAGli_zDqj7VmMLW6ZHL80MauQ"
+            }
+            ```   
+
+            body :
+            ```jso
+            {
+                "message": "Update comments update"
+            }
+            ```
+
+            response
+            ```json
+            {
+                "status": "ok",
+                "data": {
+                    "id": 2,
+                    "message": "Update comments update",
+                    "photo_id": 9,
+                    "user_id": 25
+                }
+            }
+            ```
+
+    * #### Social Medias :
+        * #### Add Social Media
+            [POST]```https://murmuring-savannah-72759.herokuapp.com/socialmedias/```
+
+            headers :
+
+            ```
+            {
+                Authorization: "Bearer {{token}}"
+            }
+            ```
+
+            token pada header dapat didapatkan ketika melalui proses login
+
+            contoh :
+            ```
+            {
+                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VyIjoyNH0.XpOW4v9hpneBw9gnsVAGli_zDqj7VmMLW6ZHL80MauQ"
+            }
+            ```            
+
+            body :
+
+            ```json
+            {
+                "name": "Facebook",
+                "social_media_url": "https://facebook.com/andrinur13"
+            }
+            ```
+
+            response
+            ```json
+            {
+                "status": "created",
+                "data": {
+                    "id": 3,
+                    "name": "Facebook",
+                    "social_media_url": "https://facebook.com/andrinur13",
+                    "user_id": 25,
+                    "date": "2021-12-22T20:08:35.294+07:00"
+                }
+            }
+            ```
+
+        * #### Get Social Media
+            [GET]```https://murmuring-savannah-72759.herokuapp.com/socialmedias/```
+
+            headers :
+
+            ```
+            {
+                Authorization: "Bearer {{token}}"
+            }
+            ```
+
+            token pada header dapat didapatkan ketika melalui proses login
+
+            contoh :
+            ```
+            {
+                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VyIjoyNH0.XpOW4v9hpneBw9gnsVAGli_zDqj7VmMLW6ZHL80MauQ"
+            }
+            ```            
+
+            response
+            ```json
+            {
+                "status": "ok",
+                "data": [
+                    {
+                        "id": 1,
+                        "name": "Linkedin",
+                        "social_media_url": "https://linkedin.com/andri-hidayatulloh",
+                        "user_id": 25,
+                        "date": "2021-12-22T19:59:32+07:00",
+                        "User": {
+                            "id": 25,
+                            "username": "andrinur19",
+                            "email": "andribis13@gmail.com",
+                            "age": 0
+                        }
+                    },
+                    {
+                        "id": 3,
+                        "name": "Facebook",
+                        "social_media_url": "https://facebook.com/andrinur13",
+                        "user_id": 25,
+                        "date": "2021-12-22T20:08:35+07:00",
+                        "User": {
+                            "id": 25,
+                            "username": "andrinur19",
+                            "email": "andribis13@gmail.com",
+                            "age": 0
+                        }
+                    }
+                ]
+            }   
+            ```
+        
+        * #### Delete Social Media
+            [DELETE]```https://murmuring-savannah-72759.herokuapp.com/socialmedias/:id```
+
+            ```
+            https://murmuring-savannah-72759.herokuapp.com/socialmedias/2
+            ```
+
+            headers :
+
+            ```
+            {
+                Authorization: "Bearer {{token}}"
+            }
+            ```
+
+            token pada header dapat didapatkan ketika melalui proses login
+
+            contoh :
+            ```
+            {
+                Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZF91c2VyIjoyNH0.XpOW4v9hpneBw9gnsVAGli_zDqj7VmMLW6ZHL80MauQ"
+            }
+            ```            
+
+            response
+            ```json
+            {
+                "status": "ok",
+                "data": "success deleted social media!"
+            }
+            ```
