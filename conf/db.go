@@ -2,7 +2,6 @@ package conf
 
 import (
 	"fmt"
-	"os"
 
 	"gorm.io/driver/mysql"
 
@@ -19,11 +18,11 @@ func InitDB() *gorm.DB {
 	// 	dsn      = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", username, password, hostname, port, dbname)
 	// )
 
-	userName := os.Getenv("USERNAME")
-	password := os.Getenv("PASSWORD")
-	hostIP := os.Getenv("HOST")
-	portServer := os.Getenv("PORTDB")
-	dbName := os.Getenv("DATABASE")
+	userName := "andri"
+	password := "ServerAzure123@"
+	hostIP := "20.124.39.116"
+	portServer := "3306"
+	dbName := "mygram-golang"
 
 	// read db
 	dsnString := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", userName, password, hostIP, portServer, dbName)
