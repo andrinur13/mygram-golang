@@ -24,17 +24,21 @@ func main() {
 	userService := service.NewUserService(userRepository)
 	userController := controller.NewUserController(userService)
 
+	commentRepository := repository.NewCommentRepository(db)
+	commentService := service.NewCommentService(commentRepository)
+
 	photoRepository := repository.NewPhotoRepository(db)
 	photoService := service.NewPhotoService(photoRepository)
-	photoController := controller.NewPhotoController(photoService, userService)
+	photoController := controller.NewPhotoController(photoService, commentService, userService)
+	commentController := controller.NewCommentController(commentService, photoService)
 
 	socialmediaRepository := repository.NewSocialMediaRepository(db)
 	socialmediaService := service.NewSocialMediaService(socialmediaRepository)
 	socialmediaController := controller.NewSocialMediaController(socialmediaService, userService)
 
-	commentRepository := repository.NewCommentRepository(db)
-	commentService := service.NewCommentService(commentRepository)
-	commentController := controller.NewCommentController(commentService, photoService)
+	// commentRepository := repository.NewCommentRepository(db)
+	// commentService := service.NewCommentService(commentRepository)
+	// commentController := controller.NewCommentController(commentService, photoService)
 
 	router := gin.Default()
 

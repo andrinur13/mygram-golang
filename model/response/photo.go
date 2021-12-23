@@ -15,23 +15,23 @@ type CreatePhotoResponse struct {
 }
 
 type GetPhotoUser struct {
-	ID        int       `json:"id"`
-	Title     string    `json:"title"`
-	Caption   string    `json:"caption"`
-	PhotoURL  string    `json:"photo_url"`
-	CreatedAt time.Time `json:"created_at"`
-	Comments  string    `json:"comments"`
+	ID        int              `json:"id"`
+	Title     string           `json:"title"`
+	Caption   string           `json:"caption"`
+	PhotoURL  string           `json:"photo_url"`
+	CreatedAt time.Time        `json:"created_at"`
+	Comments  []entity.Comment `json:"comments"`
 	// nambahin commenst dari mas Andri K
 }
 
 type GetPhotoDetailUser struct {
-	ID        int         `json:"id"`
-	Title     string      `json:"title"`
-	Caption   string      `json:"caption"`
-	PhotoURL  string      `json:"photo_url"`
-	CreatedAt time.Time   `json:"created_at"`
-	User      UserInPhoto `json:"user"`
-	Comments  string      `json:"comments"`
+	ID        int              `json:"id"`
+	Title     string           `json:"title"`
+	Caption   string           `json:"caption"`
+	PhotoURL  string           `json:"photo_url"`
+	CreatedAt time.Time        `json:"created_at"`
+	User      UserInPhoto      `json:"user"`
+	Comments  []entity.Comment `json:"comments"`
 	// nambahin commenst dari mas Andri K
 }
 
@@ -55,7 +55,6 @@ func GetAllPhotosUser(photos []entity.Photo) []GetPhotoUser {
 			Caption:   photo.Caption,
 			PhotoURL:  photo.PhotoURL,
 			CreatedAt: photo.CreatedAt,
-			Comments:  "Comments aja",
 		}
 
 		allPhotoUser = append(allPhotoUser, tmpPhoto)

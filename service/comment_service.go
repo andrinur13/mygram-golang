@@ -16,6 +16,7 @@ type CommentService interface {
 	DeleteComment(ID int) (entity.Comment, error)
 	UpdateComment(ID int, input input.CommentUpdateInput) (entity.Comment, error)
 	GetCommentByID(commentID int) (entity.Comment, error)
+	GetCommentsByPhotoID(photoID int) ([]entity.Comment, error)
 }
 
 func NewCommentService(commentRepository repository.CommentRepository) *commentService {
@@ -99,4 +100,14 @@ func (s *commentService) GetCommentByID(commentID int) (entity.Comment, error) {
 	}
 
 	return comment, nil
+}
+
+func (s *commentService) GetCommentsByPhotoID(photoID int) ([]entity.Comment, error) {
+	comments, err := s.commentRepository.FindByPhotoID(photoID)
+
+	if err != nil {
+		return []entity.Comment{}, err
+	}
+
+	return comments, nil
 }
