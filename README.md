@@ -75,7 +75,7 @@ Kelompok :
             
             headers :
 
-            ```json
+            ```
             {
                 Authorization: "Bearer {{token}}"
             }
