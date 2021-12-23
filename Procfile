@@ -1,1 +1,1 @@
-web: bin/mygram-golang-poc
+web: mygram-golang
