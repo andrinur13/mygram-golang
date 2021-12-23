@@ -40,9 +40,7 @@ func (h *userController) RegisterUser(c *gin.Context) {
 	newUser, err := h.userService.CreateUser(input)
 
 	if err != nil {
-		errorMessages := helper.FormatValidationError(err)
-
-		response := helper.APIResponse("failed", errorMessages)
+		response := helper.APIResponse("failed", err)
 		c.JSON(http.StatusUnprocessableEntity, response)
 		return
 	}
